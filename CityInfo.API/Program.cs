@@ -1,4 +1,5 @@
 using CityInfo.API.DbContexts;
+using CityInfo.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,12 @@ builder.Services.AddSwaggerGen();
 
 //each database provider has it's own connection procedure. see docs
 builder.Services.AddDbContext<CityInfoContext>(DbContextOptions => 
-         DbContextOptions.UseSqlite("Data Source=CityInfo.db"));
+         DbContextOptions.UseSqlite(
+              builder.Configuration["ConnectionStrings:CityInfoDBConnectionString"]));
+
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

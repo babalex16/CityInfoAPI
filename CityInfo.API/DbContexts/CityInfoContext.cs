@@ -10,9 +10,8 @@ namespace CityInfo.API.DbContexts
         { 
 
         }
-        public DbSet<City> Cities { get; set; }
-
-        public DbSet<PointOfInterest> PointOfInterests { get; set; }
+        public DbSet<City> Cities { get; set; } = null!;
+        public DbSet<PointOfInterest> PointsOfInterest { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
