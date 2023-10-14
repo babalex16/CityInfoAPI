@@ -53,6 +53,10 @@ namespace CityInfo.API.Services
                .Where(p => p.CityId == cityId && p.Id == pointOfInterestId)
                .FirstOrDefaultAsync();
         }
+        public void DeletePointOfInterest(PointOfInterest pointOfInterest)
+        {
+            _context.PointsOfInterest.Remove(pointOfInterest);
+        }
 
         public async Task<IEnumerable<PointOfInterest>> GetPointsOfInterestForCityAsync(
             int cityId)
